@@ -40,3 +40,9 @@
 - 从程序员的角度去写 tests
 - `resolve` is the function Django uses internally to resolve URLs and find what view function they should map to. 例如把`resolve('/')`的结果和某个具体的 view 去作比较（views 写在`lists/views.py`里）
 - 用`urls.py`将 urls 和 view 链接起来。
+
+### 循环以下命令
+
+- python manage.py runserver
+- python functional_tests.py
+- python manage.py test
