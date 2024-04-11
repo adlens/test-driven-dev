@@ -33,6 +33,7 @@
 
 - Django encourages you to structure your code into apps
 - `python3 manage.py startapp lists`，这会创建一个叫`lists`的文件夹，在其中的`tests.py`写 tests
+- 在`settings.py`中将`"lists"`添加到`INSTALLED_APPS`中
 - 测试时用`python3 manage.py test`
 
 ### Unit Tests
@@ -46,3 +47,21 @@
 - python manage.py runserver
 - python functional_tests.py
 - python manage.py test
+
+### Refactoring
+
+- refactor 的时候不要添加任何新功能，只是改变结构，把一个文件里的内容写到新的地方而已。
+
+### Templates
+
+- 在`lists`文件夹里创建新的文件夹`templates`以存储 html 文件
+- 在`views.py`文件中`render(request, 'home.html')`
+
+### The Django Test Client
+
+- Django gives us a tool called the Django Test Client, which has built-in ways of checking what templates are used
+
+```
+   response = self.client.get('/')
+   self.assertTemplateUsed(response, 'home.html')
+```
