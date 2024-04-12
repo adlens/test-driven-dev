@@ -1,3 +1,9 @@
+## Resources
+
+- [《Security Engineering》](https://www.cl.cam.ac.uk/~rja14/book.html)
+
+## Project: superlists
+
 ### Required Software Installations
 
 1. The Firefox web browser
@@ -65,3 +71,25 @@
    response = self.client.get('/')
    self.assertTemplateUsed(response, 'home.html')
 ```
+
+### Django’s CSRF protection
+
+```
+<form method="post">
+    {% csrf_token %}
+    <!-- 表单的其他部分 -->
+</form>
+
+```
+
+### Associate input tag with request.POST
+
+- Include a `name=` attribute in the `input` tag
+
+### Red/Green/Refactor and Triangulation
+
+The unit-test/code cycle is sometimes taught as Red, Green, Refactor:
+
+- Start by writing a unit test which fails (Red).
+- Write the simplest possible code to get it to pass (Green), even if that means cheating.
+- Refactor to get to better code that makes more sense.
