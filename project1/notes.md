@@ -67,19 +67,18 @@
 
 - Django gives us a tool called the Django Test Client, which has built-in ways of checking what templates are used
 
-```
-   response = self.client.get('/')
-   self.assertTemplateUsed(response, 'home.html')
+```python
+response = self.client.get('/')
+self.assertTemplateUsed(response, 'home.html')
 ```
 
 ### Django’s CSRF protection
 
-```
+```html
 <form method="post">
-    {% csrf_token %}
-    <!-- 表单的其他部分 -->
+  {% csrf_token %}
+  <!-- 表单的其他部分 -->
 </form>
-
 ```
 
 ### Associate input tag with request.POST
@@ -93,3 +92,53 @@ The unit-test/code cycle is sometimes taught as Red, Green, Refactor:
 - Start by writing a unit test which fails (Red).
 - Write the simplest possible code to get it to pass (Green), even if that means cheating.
 - Refactor to get to better code that makes more sense.
+
+### Django Object-Relational Mapper (ORM) and Model
+
+- ORM 类似一个 database，具体功能写在`lists.models`里
+- 可以写如下的 unit_test
+
+```python
+from lists.models import Item
+...
+def test_saving_and_retrieving_items(self):
+   # Create an item
+   first_item = Item()
+   first_item.text = 'xxx'
+   first_item.save()
+
+   # Bundle the items
+   saved_items = Item.objects.all()
+
+   # 获取item，将saved_items作为一个array对待
+   first_saved_item = saved_items[0]
+   self.assertEqual(first_saved_item.text, 'xxx')
+```
+
+- `lists/models.py`文件中创建`Item` class
+
+```python
+from django.db import models
+class Item(models.Model):
+       text = models.TextField(default='') # 自定义的item method
+```
+
+- 要通过 Database Migration 才能成功创建这个 model Item。使用命令`python3 manage.py makemigrations`。之后如果要改变这些 models 也要重新运行`python manage.py migrate`
+- 手动清除 database 的数据
+
+```bash
+rm db.sqlite3
+python3 manage.py migrate --noinput
+```
+
+### 迁移 functional tests
+
+- 创建文件夹`functioanl_tests`
+- 在该文件夹中创建文件`__init__.py`。
+- 用`git mv functional_tests.py functional_tests/tests.py`将原本的文件移到这个文件夹中并命名为`tests.py`
+- 现在要用`python3 manage.py test functional_tests`来运行这个文件夹中的 tests。并且这样做就可以将原本文件底部的`if __name__ == '__main__'`移除
+
+### LiveServerTestCase
+
+- 这个 Django 的 method 可以帮助我们自动管理，即创建和清除 database
+- `self.browser.get('http://localhost:8000')`改成`self.browser.get(self.live_server_url)`
