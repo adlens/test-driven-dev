@@ -123,7 +123,7 @@ class Item(models.Model):
        text = models.TextField(default='') # 自定义的item method
 ```
 
-- 要通过 Database Migration 才能成功创建这个 model Item。使用命令`python3 manage.py makemigrations`。之后如果要改变这些 models 也要重新运行`python manage.py migrate`
+- 要通过 Database Migration 才能成功创建这个 model Item。每次改变 models 中的数据结构都要重新使用命令`python3 manage.py makemigrations`。运行`python manage.py migrate`来实际更新数据库结构。此命令会查找所有还未应用的迁移文件，并按照依赖关系顺序执行它们，更新数据库结构。
 - 手动清除 database 的数据
 
 ```bash
@@ -142,3 +142,7 @@ python3 manage.py migrate --noinput
 
 - 这个 Django 的 method 可以帮助我们自动管理，即创建和清除 database
 - `self.browser.get('http://localhost:8000')`改成`self.browser.get(self.live_server_url)`
+
+### <form action="">
+
+- 在 HTML 中，<form>标签用于创建一个表单，用于用户输入数据。action 属性是<form>标签的一个重要属性，它定义了当表单提交时，数据应该发送到服务器上的哪个 URL。换句话说，action 属性指定了处理表单数据的服务器端脚本的位置。
