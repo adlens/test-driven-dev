@@ -150,3 +150,17 @@ python3 manage.py migrate --noinput
 ### 迁移 urls
 
 - For URLs that only apply to the lists app, Django encourages us to use a separate lists/urls.py, to make the app more self-contained. The simplest way to make one is to use a copy of the existing urls.py: `$ cp superlists/urls.py lists/`
+
+### 安装 bootstrap
+
+- 在`lists`文件夹中创建新的文件夹`static`, 将下载下来并解压后的`bootstrap dist`文件夹移到里边，重新命名文件夹为`bootstrap`
+
+```zsh
+
+$ mkdir lists/static
+$ mv bootstrap-3.3.4-dist lists/static/bootstrap $ rm bootstrap.zip
+```
+
+### Template inheritance
+
+- `<h1>{% block header_text %}{% endblock %}</h1>` 用 block 来标记等会可以被 child templates 替换的区域。相当于一个 skeleton，这样只要 child html 中向这些 block 填不同内容就可以渲染出不同页面。
