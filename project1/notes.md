@@ -146,3 +146,7 @@ python3 manage.py migrate --noinput
 ### <form action="">
 
 - 在 HTML 中，<form>标签用于创建一个表单，用于用户输入数据。action 属性是<form>标签的一个重要属性，它定义了当表单提交时，数据应该发送到服务器上的哪个 URL。换句话说，action 属性指定了处理表单数据的服务器端脚本的位置。
+
+### 迁移 urls
+
+- For URLs that only apply to the lists app, Django encourages us to use a separate lists/urls.py, to make the app more self-contained. The simplest way to make one is to use a copy of the existing urls.py: `$ cp superlists/urls.py lists/`
