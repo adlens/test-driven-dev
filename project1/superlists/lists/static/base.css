@@ -1,0 +1,18 @@
+#id_new_item {
+  margin-top: 2ex;
+}
+
+.my-jumbotron {
+  padding: 2rem 1rem; /* 较大的内边距 */
+  margin-bottom: 2rem; /* 和其他元素之间的距离 */
+  background-color: #e9ecef; /* 浅灰色背景，类似于原来的 jumbotron */
+  border-radius: 0.3rem; /* 轻微的圆角 */
+}
+
+.my-jumbotron h1 {
+  font-size: 2.5rem; /* 较大的标题字体 */
+}
+
+.my-jumbotron p {
+  font-size: 1.25rem; /* 提高段落字体大小 */
+}

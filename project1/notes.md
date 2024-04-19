@@ -164,3 +164,7 @@ $ mv bootstrap-3.3.4-dist lists/static/bootstrap $ rm bootstrap.zip
 ### Template inheritance
 
 - `<h1>{% block header_text %}{% endblock %}</h1>` 用 block 来标记等会可以被 child templates 替换的区域。相当于一个 skeleton，这样只要 child html 中向这些 block 填不同内容就可以渲染出不同页面。
+
+### Functional test 中将`LiveServerTestCase`切换成`StaticLiveServerTestCase`
+
+- 简单说前者比后者功能更齐全。如果你的 project 中用到了 bootstrap 中的 css，js 这些 static file，那么用前者才能调用这些文件。
