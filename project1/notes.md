@@ -168,3 +168,11 @@ $ mv bootstrap-3.3.4-dist lists/static/bootstrap $ rm bootstrap.zip
 ### Functional test 中将`LiveServerTestCase`切换成`StaticLiveServerTestCase`
 
 - 简单说前者比后者功能更齐全。如果你的 project 中用到了 bootstrap 中的 css，js 这些 static file，那么用前者才能调用这些文件。
+
+### collectstatic and Other Static directories
+
+- `settings.py`中修改
+  ` STATIC_URL = '/static/'
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))`
+- 命令行中执行`$ python manage.py collectstatic`
+- 如果不想把 admin 中的 static 文件也加进去那么执行以上命令前将 INSTALLED_APPS 中的'django.contrib.admin'注释掉。
